@@ -1,12 +1,7 @@
-const http = require('http');
+const { createReadStream } = require('fs');
 
-const server = http.createServer((req, res) => {
-  if (req.url === '/') {
-    res.end('Welcome to out homepage');
-  }
-  if (req.url === '/about') {
-    res.end('Here is about section');
-  }
+const stream = createReadStream('./content/big.txt');
+
+stream.on('data', result => {
+  console.log(result);
 });
-
-server.listen(5000);
